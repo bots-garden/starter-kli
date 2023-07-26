@@ -2,3 +2,4 @@
 target
 *.wasm
 *.iml
+.DS_Store
