@@ -5,6 +5,7 @@ import com.couchbase.lite.Collection
 import com.couchbase.lite.internal.CouchbaseLiteInternal
 import model.CLUSTER_PROPERTIES_COLLECTION_NAME
 import model.CouchbaseConnection
+import model.EXTISM_PLUGIN_COLLECTION_NAME
 import java.io.File
 import java.nio.file.Paths
 
@@ -13,7 +14,7 @@ const val APPLICATION_NAME = "starter-kli"
 class CBLite {
 
     var couchbaseConnectionCollection: Collection? = null
-
+    var extismPluginCollection: Collection? = null
 
     public fun initDB() {
         val homePath = System.getProperty("user.home")
@@ -35,6 +36,8 @@ class CBLite {
         // Create a new collection (like a SQL table) in the database.
         couchbaseConnectionCollection = database.createCollection(CLUSTER_PROPERTIES_COLLECTION_NAME);
         println("Collection created: " + couchbaseConnectionCollection);
+        extismPluginCollection = database.createCollection(EXTISM_PLUGIN_COLLECTION_NAME);
+        println("Collection created: " + extismPluginCollection);
 
         var prop = CouchbaseConnection("MyCo","couchbase://localhost",
             "Administrator","password","defaul","_default")
