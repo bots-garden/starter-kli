@@ -29,3 +29,8 @@ LD_LIBRARY_PATH="/usr/local/lib" \
 WASM_FILE="/home/ubuntu/kotlin-wasm-runner/starter-kli/go-handler-plugin/simple.wasm" \
 mvn clean compile exec:java
 ```
+## Couchbase Lite
+
+The database file will be automatically created in user's home starter-kli_config directory.
+
+Couchbase lite is a native library and as such expect some libraries to be available on your system, in specific version. 

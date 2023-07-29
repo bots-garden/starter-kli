@@ -1,5 +1,7 @@
+import database.CBLite
+import database.repository.CouchbaseConnectionRepositoryDb
+import model.CouchbaseConnection
 import org.extism.sdk.Context
-import org.extism.sdk.Plugin
 import org.extism.sdk.manifest.Manifest
 import org.extism.sdk.wasm.WasmSourceResolver
 import java.nio.file.Path
@@ -21,7 +23,17 @@ fun main(args: Array<String>) {
     } catch (e: Exception) {
         // handler
         println("🤬" + e.message)
-    } 
+    }
+    var cblite = CBLite()
+    cblite.initDB()
+    var repo = CouchbaseConnectionRepositoryDb(cblite)
+    var p = CouchbaseConnection("MyCo","couchbase://localhost",
+        "Administrator","password","defaul","_default")
 
+    repo.save(p)
+    var connections = repo.get()
+    var count = repo.couchbaseConnectionCount()
+    connections.forEach { co -> println(co.connectionName) }
+    println(count)
     //println("Program arguments: ${args.joinToString()}")
 }
